@@ -2,11 +2,11 @@
 #include <queue>
 #include <vector>
 #include <functional>
-#include "scheduler.hpp"
+#include "scheduler/scheduler.hpp"
 
-#include "first_come_first_service.hpp"
-#include "shortest_processing_time_first.hpp"
-#include "round_robin.hpp"
+#include "scheduler/first_come_first_service.hpp"
+#include "scheduler/shortest_processing_time_first.hpp"
+#include "scheduler/round_robin.hpp"
 
 void create_scheduler(Scheduler *&scheduler);
 
