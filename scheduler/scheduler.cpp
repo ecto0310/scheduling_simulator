@@ -2,9 +2,8 @@
 #include <iostream>
 #include <boost/hof.hpp>
 
-Scheduler::Scheduler() : wait(boost::hof::proj(&Process::arrival_time, std::greater{})),
-                         time(0),
-                         running({.status = none})
+Scheduler::Scheduler() : time(0),
+                         wait(boost::hof::proj(&Process::arrival_time, std::greater{}))
 {
     return;
 }

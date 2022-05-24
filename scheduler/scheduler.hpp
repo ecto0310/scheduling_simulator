@@ -14,12 +14,12 @@ enum Status
 
 struct Process
 {
-    std::string name;
-    int arrival_time;
-    int cost;
-    int progress;
-    int finish_time;
-    Status status;
+    std::string name = "";
+    int arrival_time = 0;
+    int cost = 0;
+    int progress = 0;
+    int finish_time = -1;
+    Status status = none;
 };
 
 class Scheduler
