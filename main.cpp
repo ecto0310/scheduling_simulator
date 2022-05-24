@@ -13,7 +13,7 @@ int main()
 {
     Scheduler *scheduler;
     create_scheduler(scheduler);
-    if (scheduler == NULL)
+    if (scheduler == nullptr)
     {
         std::cout << "unimplemented scheduler" << std::endl;
         return 1;
