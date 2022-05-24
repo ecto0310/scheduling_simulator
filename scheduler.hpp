@@ -30,6 +30,7 @@ public:
     std::priority_queue<Process, std::vector<Process>, std::function<bool(const Process &, const Process &)>> wait;
 
     Scheduler();
+    virtual ~Scheduler() {}
     void run();
     void result();
 
