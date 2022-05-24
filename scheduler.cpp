@@ -1,10 +1,11 @@
 #include "scheduler.hpp"
 #include <iostream>
 
-Scheduler::Scheduler()
+Scheduler::Scheduler() : wait([](Process l, Process r)
+                              { return r.arrival_time < l.arrival_time; }),
+                         time(0),
+                         running({.status = none})
 {
-    wait = std::priority_queue<Process, std::vector<Process>, std::function<bool(Process, Process)>>([](Process l, Process r)
-                                                                                                     { return r.arrival_time < l.arrival_time; });
     return;
 }
 
