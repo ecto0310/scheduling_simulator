@@ -6,13 +6,13 @@
 
 #include "first_come_first_service.hpp"
 
-void create_scheduler(Scheduler **scheduler);
-void create_processes(Scheduler *scheduler);
+void create_scheduler(Scheduler *&scheduler);
+void create_processes(Scheduler *&scheduler);
 
 int main()
 {
     Scheduler *scheduler;
-    create_scheduler(&scheduler);
+    create_scheduler(scheduler);
     if (scheduler == NULL)
     {
         std::cout << "unimplemented scheduler" << std::endl;
@@ -25,7 +25,7 @@ int main()
     return 0;
 }
 
-void create_scheduler(Scheduler **scheduler)
+void create_scheduler(Scheduler *&scheduler)
 {
     std::cout << "input scheduler type" << std::endl
               << "0: first come first service" << std::endl;
@@ -34,7 +34,7 @@ void create_scheduler(Scheduler **scheduler)
     switch (type)
     {
     case 0:
-        *scheduler = (Scheduler *)new FirstComeFirstService();
+        scheduler = (Scheduler *)new FirstComeFirstService();
         break;
     default:
         break;
@@ -42,7 +42,7 @@ void create_scheduler(Scheduler **scheduler)
     return;
 }
 
-void create_processes(Scheduler *scheduler)
+void create_processes(Scheduler *&scheduler)
 {
     std::cout << "input process quantity" << std::endl;
     int N;
