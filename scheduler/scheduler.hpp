@@ -19,7 +19,7 @@ struct Process
     int cost = 0;
     int progress = 0;
     int finish_time = -1;
-    Status status = none;
+    Status status = running;
 };
 
 class Scheduler
