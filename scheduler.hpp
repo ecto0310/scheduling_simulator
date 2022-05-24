@@ -27,7 +27,7 @@ class Scheduler
 public:
     Scheduler();
     virtual ~Scheduler() {}
-    void setup();
+    virtual void setup();
     void run();
     void result();
 
@@ -41,5 +41,5 @@ protected:
 
     virtual void create_process(Process) = 0;
     virtual void switch_process() = 0;
-    void do_process();
+    virtual void do_process();
 };
