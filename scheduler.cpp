@@ -1,8 +1,8 @@
 #include "scheduler.hpp"
 #include <iostream>
+#include <boost/hof.hpp>
 
-Scheduler::Scheduler() : wait([](Process l, Process r)
-                              { return r.arrival_time < l.arrival_time; }),
+Scheduler::Scheduler() : wait(boost::hof::proj(&Process::arrival_time, std::greater{})),
                          time(0),
                          running({.status = none})
 {

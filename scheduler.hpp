@@ -27,7 +27,7 @@ class Scheduler
 public:
     int time;
     int limit_time;
-    std::priority_queue<Process, std::vector<Process>, std::function<bool(Process, Process)>> wait;
+    std::priority_queue<Process, std::vector<Process>, std::function<bool(const Process &, const Process &)>> wait;
 
     Scheduler();
     void run();
