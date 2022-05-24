@@ -23,22 +23,3 @@ void FirstComeFirstService::switch_process()
     }
     return;
 }
-
-void FirstComeFirstService::do_process()
-{
-    if (running.status == Status::running)
-    {
-        running.progress++;
-        std::cout << "running: " << running.name << " (" << running.progress << "/" << running.cost << ")" << std::endl;
-        if (running.progress == running.cost)
-        {
-            std::cout << "finished: " << running.name << std::endl;
-            running.status = Status::finished;
-        }
-    }
-    else
-    {
-        std::cout << "no process" << std::endl;
-    }
-    return;
-}

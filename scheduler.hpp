@@ -25,20 +25,21 @@ struct Process
 class Scheduler
 {
 public:
-    int time;
-    int limit_time;
-    std::priority_queue<Process, std::vector<Process>, std::function<bool(const Process &, const Process &)>> wait;
-
     Scheduler();
     virtual ~Scheduler() {}
+    void setup();
     void run();
     void result();
 
 protected:
-    std::vector<Process> finished;
+    int time;
+    int limit_time;
+
+    std::priority_queue<Process, std::vector<Process>, std::function<bool(const Process &, const Process &)>> wait;
     Process running;
+    std::vector<Process> finished;
 
     virtual void create_process(Process) = 0;
     virtual void switch_process() = 0;
-    virtual void do_process() = 0;
+    void do_process();
 };

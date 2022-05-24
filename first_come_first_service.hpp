@@ -12,5 +12,4 @@ private:
 
     void create_process(Process) override;
     void switch_process() override;
-    void do_process() override;
 };

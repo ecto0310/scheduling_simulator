@@ -8,7 +8,6 @@
 #include "shortest_processing_time_first.hpp"
 
 void create_scheduler(Scheduler *&scheduler);
-void create_processes(Scheduler *&scheduler);
 
 int main()
 {
@@ -20,8 +19,7 @@ int main()
         return 1;
     }
 
-    create_processes(scheduler);
-
+    scheduler->setup();
     scheduler->run();
     return 0;
 }
@@ -44,25 +42,5 @@ void create_scheduler(Scheduler *&scheduler)
     default:
         break;
     }
-    return;
-}
-
-void create_processes(Scheduler *&scheduler)
-{
-    std::cout << "input process quantity" << std::endl;
-    int N;
-    std::cin >> N;
-
-    std::cout << "input process detail" << std::endl
-              << "name arrival-time cost" << std::endl;
-    for (int i = 0; i < N; i++)
-    {
-        Process t = {};
-        std::cin >> t.name >> t.arrival_time >> t.cost;
-        scheduler->wait.push(t);
-    }
-
-    std::cout << "input time limit" << std::endl;
-    std::cin >> scheduler->limit_time;
     return;
 }

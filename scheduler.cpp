@@ -9,6 +9,26 @@ Scheduler::Scheduler() : wait(boost::hof::proj(&Process::arrival_time, std::grea
     return;
 }
 
+void Scheduler::setup()
+{
+    std::cout << "input process quantity" << std::endl;
+    int N;
+    std::cin >> N;
+
+    std::cout << "input process detail" << std::endl
+              << "name arrival-time cost" << std::endl;
+    for (int i = 0; i < N; i++)
+    {
+        Process t = {};
+        std::cin >> t.name >> t.arrival_time >> t.cost;
+        wait.push(t);
+    }
+
+    std::cout << "input time limit" << std::endl;
+    std::cin >> limit_time;
+    return;
+}
+
 void Scheduler::run()
 {
     for (; time <= limit_time; time++)
@@ -35,5 +55,24 @@ void Scheduler::result()
         response_time_sum += i.finish_time - i.arrival_time;
     }
     std::cout << "average response time: " << (double)response_time_sum / finished.size() << std::endl;
+    return;
+}
+
+void Scheduler::do_process()
+{
+    if (running.status == Status::running)
+    {
+        running.progress++;
+        std::cout << "running: " << running.name << " (" << running.progress << "/" << running.cost << ")" << std::endl;
+        if (running.progress == running.cost)
+        {
+            std::cout << "finished: " << running.name << std::endl;
+            running.status = Status::finished;
+        }
+    }
+    else
+    {
+        std::cout << "no process" << std::endl;
+    }
     return;
 }
