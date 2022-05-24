@@ -7,11 +7,10 @@
 
 class FirstComeFirstService : public Scheduler
 {
-public:
+private:
+    std::queue<Process> queue;
+
     void create_process(Process) override;
     void switch_process() override;
     void do_process() override;
-
-private:
-    std::queue<Process> queue;
 };
