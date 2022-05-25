@@ -12,7 +12,7 @@ void create_scheduler(Scheduler *&scheduler);
 
 int main()
 {
-    Scheduler *scheduler;
+    Scheduler *scheduler = nullptr;
     create_scheduler(scheduler);
     if (scheduler == nullptr)
     {
