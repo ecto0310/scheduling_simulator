@@ -42,5 +42,5 @@ protected:
     virtual void create_process(Process) = 0;
     virtual void switch_process() = 0;
     virtual void do_process();
-    bool finish();
+    bool finish() const;
 };

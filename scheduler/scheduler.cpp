@@ -46,7 +46,7 @@ void Scheduler::run()
     result();
 }
 
-bool Scheduler::finish()
+bool Scheduler::finish() const
 {
     if ((int)finished.size() == process_count)
     {
