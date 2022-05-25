@@ -12,26 +12,22 @@ Scheduler::Scheduler() : time(0),
 void Scheduler::setup()
 {
     std::cout << "input process quantity" << std::endl;
-    int N;
-    std::cin >> N;
+    std::cin >> process_count;
 
     std::cout << "input process detail" << std::endl
               << "name arrival-time cost" << std::endl;
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < process_count; i++)
     {
         Process t = {};
         std::cin >> t.name >> t.arrival_time >> t.cost;
         wait.push(t);
     }
-
-    std::cout << "input time limit" << std::endl;
-    std::cin >> limit_time;
     return;
 }
 
 void Scheduler::run()
 {
-    for (; time <= limit_time; time++)
+    for (;; time++)
     {
         std::cout << "time: " << time << std::endl;
         while (wait.size() != 0 && wait.top().arrival_time <= time)
@@ -40,9 +36,23 @@ void Scheduler::run()
             wait.pop();
         }
         switch_process();
+        if (finish())
+        {
+            std::cout << "finish all process" << std::endl;
+            break;
+        }
         do_process();
     }
     result();
+}
+
+bool Scheduler::finish()
+{
+    if ((int)finished.size() == process_count)
+    {
+        return true;
+    }
+    return false;
 }
 
 void Scheduler::result()

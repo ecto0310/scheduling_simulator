@@ -32,8 +32,8 @@ public:
     void result();
 
 protected:
+    int process_count;
     int time;
-    int limit_time;
 
     std::priority_queue<Process, std::vector<Process>, std::function<bool(const Process &, const Process &)>> wait;
     Process running;
@@ -42,4 +42,5 @@ protected:
     virtual void create_process(Process) = 0;
     virtual void switch_process() = 0;
     virtual void do_process();
+    bool finish();
 };
