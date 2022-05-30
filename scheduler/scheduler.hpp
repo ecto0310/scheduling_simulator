@@ -35,7 +35,7 @@ protected:
     int process_count;
     int time;
 
-    std::priority_queue<Process, std::vector<Process>, std::function<bool(const Process &, const Process &)>> wait;
+    std::deque<Process> wait;
     Process running;
     std::vector<Process> finished;
 

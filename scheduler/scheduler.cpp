@@ -3,7 +3,6 @@
 #include <boost/hof.hpp>
 
 Scheduler::Scheduler() : time(0),
-                         wait(boost::hof::proj(&Process::arrival_time, std::greater{})),
                          running({.status = none})
 {
     return;
@@ -20,8 +19,10 @@ void Scheduler::setup()
     {
         Process t = {};
         std::cin >> t.name >> t.arrival_time >> t.cost;
-        wait.push(t);
+        wait.push_back(t);
     }
+    sort(wait.begin(), wait.end(), [](const Process &l, const Process &r)
+         { return l.arrival_time < r.arrival_time; });
     return;
 }
 
@@ -30,10 +31,10 @@ void Scheduler::run()
     for (;; time++)
     {
         std::cout << "time: " << time << std::endl;
-        while (wait.size() != 0 && wait.top().arrival_time <= time)
+        while (wait.size() != 0 && wait.front().arrival_time <= time)
         {
-            create_process(wait.top());
-            wait.pop();
+            create_process(wait.front());
+            wait.pop_front();
         }
         switch_process();
         if (finish())
