@@ -7,6 +7,7 @@
 #include "scheduler/first_come_first_service.hpp"
 #include "scheduler/shortest_processing_time_first.hpp"
 #include "scheduler/round_robin.hpp"
+#include "scheduler/priority.hpp"
 
 void create_scheduler(Scheduler *&scheduler);
 
@@ -30,7 +31,8 @@ void create_scheduler(Scheduler *&scheduler)
     std::cout << "input scheduler type" << std::endl
               << "0: first come first service" << std::endl
               << "1: shortest processing time first" << std::endl
-              << "2: round robin" << std::endl;
+              << "2: round robin" << std::endl
+              << "3: priority" << std::endl;
     int type;
     std::cin >> type;
     switch (type)
@@ -43,6 +45,9 @@ void create_scheduler(Scheduler *&scheduler)
         break;
     case 2:
         scheduler = (Scheduler *)new RoundRobin();
+        break;
+    case 3:
+        scheduler = (Scheduler *)new Priority();
         break;
     default:
         break;

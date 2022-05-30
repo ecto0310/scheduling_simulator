@@ -20,6 +20,8 @@ struct Process
     int progress = 0;
     int finish_time = -1;
     Status status = running;
+
+    int priority = 0;
 };
 
 class Scheduler
